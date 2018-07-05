@@ -31,7 +31,7 @@
         }
       },
       methods: {
-        ...mapMutations({UPDATE_HOVER_NODE}),
+        ...mapMutations(['UPDATE_HOVER_NODE']),
         nodeDragStart(id) {
             let dataTransfer = event.dataTransfer;
 
