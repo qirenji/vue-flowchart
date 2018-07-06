@@ -105,7 +105,7 @@
 
               return{
                   x: Number(left) + 40,
-                  y:40+Number(top)
+                  y: 40 + Number(top)
               };
           },
           drawLineEnd() {

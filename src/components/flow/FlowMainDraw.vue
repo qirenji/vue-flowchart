@@ -1,5 +1,5 @@
 <template>
-    <div id="flowMainCont" class="flow-main-cont" >
+    <div id="flowMainCont" class="flow-main-cont" reg="FlowMainCont">
       <div id="draw" @drop.prevent="dropHandle" @dragover.stop.prevent>
         <flow-node-draw></flow-node-draw>
         <flow-line-draw></flow-line-draw>
