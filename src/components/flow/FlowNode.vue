@@ -1,5 +1,8 @@
 <template>
-    <div class="flow-node" :draggable="true" :style="nodePostion" @dragstart="nodeDragStart(option.id)" @mouseenter="mouseEnterNode(id)">
+    <div class="flow-node" :draggable="true" :style="nodePostion"
+         @dragstart="nodeDragStart(option.id)"
+         @drag="nodeDragging(option.id)"
+         @mouseenter="mouseEnterNode(id)">
       <icon :name="option.type" :size="80" style="cursor: move" />
     </div>
 </template>
@@ -32,14 +35,20 @@
       },
       methods: {
         ...mapMutations(['UPDATE_HOVER_NODE']),
+//        开始拖拽节点
         nodeDragStart(id) {
-            let dataTransfer = event.dataTransfer;
+          let dataTransfer = event.dataTransfer;
 
-            dataTransfer.dropEffect = 'move';
-            dataTransfer.setData('ID',`update:${this.id}`);
-            dataTransfer.setData('Type',this.option.type);
+          dataTransfer.dropEffect = 'move';
+          dataTransfer.setData('ID',`update:${this.id}`);
+          dataTransfer.setData('Type',this.option.type);
 
         },
+//        移动节点
+        nodeDragging(id) {
+
+        },
+//        
         mouseEnterNode(id) {
             this.UPDATE_HOVER_NODE({
                 id

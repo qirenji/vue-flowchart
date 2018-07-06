@@ -1,5 +1,7 @@
 <template>
-    <div id="FlowNodeDarw" class="node-draw">
+    <div id="FlowNodeDarw" class="node-draw" ref="FlowNodeDarw"
+         @mouseover.capture="drawMouseover">
+      <flow-arrow></flow-arrow>
       <flow-node v-for="(item,index) in nodeData"
         :key="index"
         :id="index"
@@ -9,7 +11,8 @@
 </template>
 
 <script>
-  import FlowNode from './FlowNode'
+  import FlowNode from './FlowNode';
+  import FlowArrow from './FLowArrow';
   import { mapState, mapMutations } from 'vuex';
 
   export default{
@@ -20,21 +23,33 @@
       }
     },
     computed: {
-      ...mapState(['nodeData'])
+      ...mapState(['nodeData','lineData'])
     },
     components: {
-      FlowNode
+      FlowNode,
+      FlowArrow
     },
     methods: {
-        drawMouseover() {
-          if (event.target === event.currentTarget) {
-            console.log(123);
+      ...mapMutations(['UPDATE_HOVER_NODE']),
+//      节点外清除链接标记
+      drawMouseover() {
+          if(event.target === event.currentTarget){
+            this.UPDATE_HOVER_NODE({
+              id: ''
+            });
           }
-        }
+      }
+
     }
   }
 </script>
 
 <style lang="scss">
-
+  .node-draw{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    height: 500px;
+    z-index: 9999;
+  }
 </style>

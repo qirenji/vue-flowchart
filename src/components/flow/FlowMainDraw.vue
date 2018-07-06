@@ -24,7 +24,7 @@
       FlowLineDraw
     },
     computed:{
-      ...mapState(['nodeData'])
+      ...mapState(['nodeData','shadowLineData'])
     },
     methods: {
       ...mapMutations(['UPDATE_NODE']),
@@ -34,7 +34,7 @@
         let id = ev.dataTransfer.getData('ID');
 
         let x = ev.offsetX - 40;
-        let y = ev.offsetY;
+        let y = ev.offsetY -40;
 
         //新建节点
         if(!id){
@@ -48,6 +48,7 @@
               }
           })
         }else{
+          //移动节点
           id = id.replace(/.*\:/g, '');
           this.UPDATE_NODE({
             [id]:{
@@ -65,6 +66,7 @@
 
 <style lang="scss">
   #draw{
+    position: relative;
     height: 500px;
     border: 1px solid #000;
   }

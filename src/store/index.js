@@ -9,10 +9,14 @@ Vue.use(Vuex);
 const state = {
   // 节点数据
   nodeData: [],
-  lineData: null,
-  hoverNodedata: {
+  hoverNodeData: {
     id: ''
-  }
+  },
+  //连接线
+  lineData: null,
+  shadowLineData: null,
+  //线条样式
+  selLineType: 'StraightLine',
 }
 
 export default new Vuex.Store({
